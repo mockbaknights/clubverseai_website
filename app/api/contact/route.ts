@@ -43,7 +43,8 @@ function getClientIP(request: NextRequest): string {
   if (realIP) return realIP;
   if (forwarded) return forwarded.split(",")[0].trim();
   
-  return request.ip || "unknown";
+  // Fallback if no IP headers found
+  return "unknown";
 }
 
 /**
