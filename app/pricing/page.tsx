@@ -44,7 +44,6 @@ export default function PricingPage() {
                 <th className="px-6 py-5 font-semibold">ClubVerse Fee</th>
                 <th className="px-6 py-5 font-semibold">Total (incl. Stripe)</th>
                 <th className="px-6 py-5 font-semibold">Member Limits</th>
-                <th className="px-6 py-5 font-semibold"></th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-900 text-lg">
@@ -57,26 +56,24 @@ export default function PricingPage() {
                   <td className="px-6 py-6 text-gray-200">{plan.fee}</td>
                   <td className="px-6 py-6 text-gray-200">{plan.total}</td>
                   <td className="px-6 py-6 text-gray-300">{plan.limits}</td>
-                  <td className="px-6 py-6">
-                    <Link
-                      href="/contact"
-                      className="inline-flex items-center justify-center rounded-full border border-gray-700 px-5 py-2 text-sm font-medium text-white hover:border-gray-500 transition-colors"
-                    >
-                      Talk to us
-                    </Link>
-                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
 
-        <div className="text-center pt-12 border-t border-gray-900 mt-16">
-          <p className="text-gray-400 mb-4">
+        <div className="text-center pt-12 border-t border-gray-900 mt-16 space-y-6">
+          <p className="text-gray-400">
             Includes GameTime API integration, automated billing, and QuickBooks sync.
           </p>
+          <Link
+            href="/contact"
+            className="inline-flex items-center justify-center rounded-full border border-gray-700 px-8 py-3 text-white hover:border-gray-500 transition-colors text-lg font-medium"
+          >
+            Talk to us
+          </Link>
           <p className="text-gray-500 text-sm">
-            Need help choosing? <Link href="/contact" className="text-orange-500 hover:text-orange-400">Contact us</Link> and we'll guide you to the right plan.
+            Need help choosing? We’ll guide you to the right plan.
           </p>
         </div>
       </div>
