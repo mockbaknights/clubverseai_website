@@ -38,7 +38,7 @@ export default function PricingPage() {
         <div className="overflow-hidden rounded-2xl border border-gray-800 bg-gray-950/60 shadow-2xl">
           <table className="min-w-full divide-y divide-gray-800">
             <thead>
-              <tr className="text-left text-sm uppercase tracking-wide text-gray-500">
+              <tr className="text-left text-sm uppercase tracking-wide text-gray-400 bg-gray-900/40">
                 <th className="px-6 py-5 font-semibold">Plan</th>
                 <th className="px-6 py-5 font-semibold">Monthly Base</th>
                 <th className="px-6 py-5 font-semibold">ClubVerse Fee</th>
