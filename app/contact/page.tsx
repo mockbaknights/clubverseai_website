@@ -3,7 +3,9 @@ export default function ContactPage() {
     <div className="min-h-screen bg-black text-white">
       <div className="container mx-auto px-4 py-16 max-w-4xl">
         <div className="mb-16 text-center">
-          <h1 className="text-5xl md:text-6xl font-semibold mb-6 text-white">Talk to ClubVerse</h1>
+          <h1 className="text-5xl md:text-6xl font-semibold mb-6 bg-gradient-to-r from-orange-500 via-amber-400 to-orange-400 bg-clip-text text-transparent">
+            Talk to ClubVerse
+          </h1>
           <p className="text-xl text-gray-400 max-w-2xl mx-auto">
             Tell us about your club. We'll show you exactly how ClubVerse fits.
           </p>
