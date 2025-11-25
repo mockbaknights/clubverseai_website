@@ -1,65 +1,109 @@
-import Image from "next/image";
+import Hero2Orange from "./components/Hero2-Orange";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <main className="min-h-screen bg-black pt-16">
+      {/* Hero Section */}
+      <section className="min-h-screen flex items-center justify-center">
+        <Hero2Orange />
+      </section>
+
+      {/* Features Overview */}
+      <section className="py-32 px-4 border-t border-gray-900">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-20">
+            <h2 className="text-5xl md:text-6xl font-semibold mb-6 text-white">
+              Everything you need.<br />Nothing you don't.
+            </h2>
+            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+              A complete platform for modern club management. Built for scale. Designed for simplicity.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-12">
+            <div className="space-y-4">
+              <h3 className="text-2xl font-semibold text-white">Member Management</h3>
+              <p className="text-gray-400 leading-relaxed">
+                Individual, family, and corporate accounts. Flexible membership types. Automated billing that just works.
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              <h3 className="text-2xl font-semibold text-white">Smart Billing</h3>
+              <p className="text-gray-400 leading-relaxed">
+                Automated recurring fees. Multiple billing cycles. Bulletproof tracking. Never miss a payment.
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              <h3 className="text-2xl font-semibold text-white">Seamless Integration</h3>
+              <p className="text-gray-400 leading-relaxed">
+                Connect to GameTime court booking & registration. Sync with QuickBooks. One API. Infinite possibilities.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* GameTime Integration Section */}
+      <section className="py-32 px-4 border-t border-gray-900">
+        <div className="max-w-5xl mx-auto text-center space-y-8">
+          <p className="text-sm uppercase tracking-[0.3em] text-gray-500">GameTime + ClubVerse</p>
+          <h2 className="text-4xl md:text-5xl font-semibold text-white">
+            Court booking + registration meets billing + finance
+          </h2>
+          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+            GameTime is the definitive platform for court booking, program registration, and waitlists. ClubVerse plugs directly into the GameTime API so every booking, registration, and payment flows into member records, billing runs, and accounting.
           </p>
+          <div className="grid md:grid-cols-3 gap-8 text-left">
+            <div className="bg-gray-900/40 border border-gray-800 rounded-2xl p-6 space-y-3">
+              <h3 className="text-2xl font-semibold text-white">Bi-directional API</h3>
+              <p className="text-gray-400">
+                Sync member profiles, access levels, and billing status between GameTime and ClubVerse automatically.
+              </p>
+            </div>
+            <div className="bg-gray-900/40 border border-gray-800 rounded-2xl p-6 space-y-3">
+              <h3 className="text-2xl font-semibold text-white">Program Revenue</h3>
+              <p className="text-gray-400">
+                Convert GameTime program registrations into transactions and recurring fees with zero manual entry.
+              </p>
+            </div>
+            <div className="bg-gray-900/40 border border-gray-800 rounded-2xl p-6 space-y-3">
+              <h3 className="text-2xl font-semibold text-white">Financial Alignment</h3>
+              <p className="text-gray-400">
+                Match on-court activity with billing, accounting, and member access in real time.
+              </p>
+            </div>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-32 px-4 border-t border-gray-900">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-4xl md:text-5xl font-semibold mb-6 text-white">
+            Ready to get started?
+          </h2>
+          <p className="text-xl text-gray-400 mb-8">
+            See how ClubVerse can transform your club operations.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              href="/contact"
+              className="px-8 py-4 bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-700 hover:to-amber-700 text-white rounded-full text-lg font-medium transition-all duration-200 shadow-lg shadow-orange-500/20 hover:shadow-orange-500/40"
+            >
+              Request Demo
+            </Link>
+            <Link
+              href="/features"
+              className="px-8 py-4 border border-gray-800 hover:border-gray-700 text-white rounded-full text-lg font-medium transition-all duration-200"
+            >
+              Learn More
+            </Link>
+          </div>
         </div>
-      </main>
-    </div>
+      </section>
+    </main>
   );
 }
