@@ -152,32 +152,33 @@ export default function ContactPage() {
               />
             </div>
 
-            {/* Optional name */}
-            <div className="text-sm text-gray-500">
-              <label className="block mb-2">Your name (optional)</label>
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                placeholder="John Smith"
-                className="w-full px-4 py-3 rounded-2xl bg-black/30 border border-gray-900 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-700"
-                disabled={isSubmitting}
-              />
-            </div>
+            {/* Optional name and phone in one row */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="text-sm text-gray-500">
+                <label className="block mb-2">Your name (optional)</label>
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  placeholder="John Smith"
+                  className="w-full px-4 py-3 rounded-2xl bg-black/30 border border-gray-900 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-700"
+                  disabled={isSubmitting}
+                />
+              </div>
 
-            {/* Optional phone */}
-            <div className="text-sm text-gray-500">
-              <label className="block mb-2">Your phone (optional)</label>
-              <input
-                type="tel"
-                name="phone"
-                value={formData.phone}
-                onChange={handleChange}
-                placeholder="+1 (555) 123-4567"
-                className="w-full px-4 py-3 rounded-2xl bg-black/30 border border-gray-900 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-700"
-                disabled={isSubmitting}
-              />
+              <div className="text-sm text-gray-500">
+                <label className="block mb-2">Your phone (optional)</label>
+                <input
+                  type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  placeholder="+1 (555) 123-4567"
+                  className="w-full px-4 py-3 rounded-2xl bg-black/30 border border-gray-900 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-700"
+                  disabled={isSubmitting}
+                />
+              </div>
             </div>
 
             <button
