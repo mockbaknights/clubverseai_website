@@ -66,8 +66,12 @@ async function sendEmail(
   const resend = new Resend(resendKey);
 
   try {
+    // Use Resend's default domain if clubverse.com isn't verified
+    // You can change this to your verified domain in Resend
+    const fromEmail = process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev";
+    
     const { data, error } = await resend.emails.send({
-      from: "ClubVerse Contact <contact@clubverse.com>",
+      from: `ClubVerse Contact <${fromEmail}>`,
       to: [clubEmail],
       replyTo: email,
       subject: `New Contact Form: ${name || "No name"}`,
@@ -97,14 +101,22 @@ Sent from ClubVerse contact form
     });
 
     if (error) {
-      console.error("Resend error:", error);
-      return { success: false, error: error.message || "Email send failed" };
+      console.error("Resend error:", JSON.stringify(error, null, 2));
+      // Return more detailed error for debugging
+      return { 
+        success: false, 
+        error: error.message || JSON.stringify(error) || "Email send failed" 
+      };
     }
 
+    console.log("Email sent successfully:", data);
     return { success: true };
   } catch (error: any) {
     console.error("Email send error:", error);
-    return { success: false, error: error.message || "Email request failed" };
+    return { 
+      success: false, 
+      error: error.message || error.toString() || "Email request failed" 
+    };
   }
 }
 
@@ -164,10 +176,13 @@ export async function POST(request: NextRequest) {
     );
 
     if (!emailResult.success) {
+      // Log the actual error for debugging in Vercel logs
+      console.error("Email send failed:", emailResult.error);
+      
+      // Return a user-friendly message, but log the real error
       return NextResponse.json(
         {
-          error:
-            "Failed to send your message. Please try again or email us directly.",
+          error: emailResult.error || "Failed to send your message. Please try again or email us directly.",
         },
         { status: 500 }
       );
