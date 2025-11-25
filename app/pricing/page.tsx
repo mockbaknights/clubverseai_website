@@ -3,26 +3,23 @@ import Link from "next/link";
 const plans = [
   {
     name: "Starter",
-    price: "$79 /month",
-    fee: "1.9% + 30¢",
-    save: undefined,
-    bestFor: "Small clubs just getting started",
-    limits: "Up to 500 active members",
+    price: "$29 /mo",
+    fee: "1.9% + $0.10",
+    total: "≈ 4.8% + $0.40 total",
+    limits: "Up to 1,000 members",
   },
   {
     name: "Growth",
-    price: "$199 /month",
-    fee: "1.5% + 30¢",
-    save: "you save 21%",
-    bestFor: "Growing clubs with steady revenue",
-    limits: "Up to 2,000 members",
+    price: "$99 /mo",
+    fee: "1.4% + $0.10",
+    total: "≈ 4.3% + $0.40 total",
+    limits: "Up to 5,000 members",
   },
   {
     name: "Pro",
-    price: "$399 /month",
-    fee: "1.0% + 30¢",
-    save: "you save 47%",
-    bestFor: "Large or high-volume clubs",
+    price: "$249 /mo",
+    fee: "0.9% + $0.10",
+    total: "≈ 3.8% + $0.40 total",
     limits: "Unlimited members",
   },
 ];
@@ -34,7 +31,7 @@ export default function PricingPage() {
         <div className="mb-20 text-center">
           <h1 className="text-5xl md:text-6xl font-semibold mb-6 text-white">Pricing</h1>
           <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-            Final pricing table that converts beautifully. Simple base fee + transparent transaction pricing.
+            Simple base fee + transparent processing. Total cost shown with Stripe included.
           </p>
         </div>
 
@@ -43,10 +40,10 @@ export default function PricingPage() {
             <thead>
               <tr className="text-left text-sm uppercase tracking-wide text-gray-500">
                 <th className="px-6 py-5 font-semibold">Plan</th>
-                <th className="px-6 py-5 font-semibold">Monthly Base Fee</th>
-                <th className="px-6 py-5 font-semibold">Transaction Fee</th>
-                <th className="px-6 py-5 font-semibold">Best For</th>
-                <th className="px-6 py-5 font-semibold">Key Limits</th>
+                <th className="px-6 py-5 font-semibold">Monthly Base</th>
+                <th className="px-6 py-5 font-semibold">ClubVerse Fee</th>
+                <th className="px-6 py-5 font-semibold">Total (incl. Stripe)</th>
+                <th className="px-6 py-5 font-semibold">Member Limits</th>
                 <th className="px-6 py-5 font-semibold"></th>
               </tr>
             </thead>
@@ -57,13 +54,8 @@ export default function PricingPage() {
                     <div>{plan.name}</div>
                   </td>
                   <td className="px-6 py-6 text-gray-200">{plan.price}</td>
-                  <td className="px-6 py-6 text-gray-200">
-                    <div className="flex items-baseline gap-2">
-                      <span>{plan.fee}</span>
-                      {plan.save && <span className="text-sm text-orange-500">({plan.save})</span>}
-                    </div>
-                  </td>
-                  <td className="px-6 py-6 text-gray-300">{plan.bestFor}</td>
+                  <td className="px-6 py-6 text-gray-200">{plan.fee}</td>
+                  <td className="px-6 py-6 text-gray-200">{plan.total}</td>
                   <td className="px-6 py-6 text-gray-300">{plan.limits}</td>
                   <td className="px-6 py-6">
                     <Link
