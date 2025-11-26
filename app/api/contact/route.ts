@@ -156,8 +156,9 @@ export async function POST(request: NextRequest) {
 
     // Parse request body
     const body = await request.json();
-    const { email, message, name, phone, honeypot } = body;
-    console.log("Form data received:", { email, hasMessage: !!message, name, phone, hasHoneypot: !!honeypot });
+    const { email, message, name, phone, website, honeypot } = body; // Check both 'website' and 'honeypot' for compatibility
+    const honeypotValue = website || honeypot; // Support both field names
+    console.log("Form data received:", { email, hasMessage: !!message, name, phone, hasHoneypot: !!honeypotValue });
 
     // Validation
     if (!email || !message) {
@@ -168,8 +169,9 @@ export async function POST(request: NextRequest) {
     }
 
     // Honeypot check - if this field is filled, it's a bot
-    if (honeypot) {
-      // Silently fail for bots
+    if (honeypotValue) {
+      console.log("Honeypot triggered - bot detected, not sending email. Honeypot value:", honeypotValue);
+      // Silently fail for bots (return success so they don't know it failed)
       return NextResponse.json({ success: true });
     }
 

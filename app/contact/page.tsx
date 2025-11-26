@@ -109,12 +109,19 @@ export default function ContactPage() {
             {/* Honeypot field - hidden from users, bots will fill it */}
             <input
               type="text"
-              name="honeypot"
+              name="website"
               value={formData.honeypot}
               onChange={handleChange}
               tabIndex={-1}
               autoComplete="off"
-              style={{ position: "absolute", left: "-9999px" }}
+              style={{ 
+                position: "absolute", 
+                left: "-9999px",
+                opacity: 0,
+                pointerEvents: "none",
+                height: 0,
+                width: 0
+              }}
               aria-hidden="true"
             />
 
