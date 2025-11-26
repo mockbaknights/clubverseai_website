@@ -59,12 +59,15 @@ async function sendEmail(
 
   console.log("=== SEND EMAIL DEBUG ===");
   console.log("RESEND_KEY exists:", !!resendKey);
+  console.log("RESEND_KEY length:", resendKey ? resendKey.length : 0);
+  console.log("RESEND_KEY starts with 're_':", resendKey ? resendKey.startsWith("re_") : false);
   console.log("Sending to:", clubEmail);
   console.log("From email:", process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev");
+  console.log("All env vars:", Object.keys(process.env).filter(k => k.includes("RESEND") || k.includes("EMAIL")));
 
   if (!resendKey) {
-    console.error("RESEND_KEY not configured");
-    return { success: false, error: "Email service not configured" };
+    console.error("RESEND_KEY not configured - check Vercel environment variables");
+    return { success: false, error: "Email service not configured. Please check server settings." };
   }
 
   // Initialize Resend only when needed (not at module level)
