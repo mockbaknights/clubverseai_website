@@ -1,4 +1,5 @@
 import Hero2Orange from "./components/Hero2-Orange";
+import ClubTypesGallery from "./components/ClubTypesGallery";
 import Link from "next/link";
 
 export default function Home() {
@@ -8,6 +9,9 @@ export default function Home() {
       <section className="min-h-screen flex items-center justify-center">
         <Hero2Orange />
       </section>
+
+      {/* Club Types Gallery */}
+      <ClubTypesGallery />
 
       {/* Features Overview */}
       <section className="py-32 px-4 border-t border-gray-900">
