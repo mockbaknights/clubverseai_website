@@ -59,11 +59,22 @@ async function sendEmail(
 
   console.log("=== SEND EMAIL DEBUG ===");
   console.log("RESEND_KEY exists:", !!resendKey);
+  console.log("RESEND_KEY value:", resendKey ? `${resendKey.substring(0, 5)}...` : "undefined");
   console.log("RESEND_KEY length:", resendKey ? resendKey.length : 0);
   console.log("RESEND_KEY starts with 're_':", resendKey ? resendKey.startsWith("re_") : false);
   console.log("Sending to:", clubEmail);
   console.log("From email:", process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev");
-  console.log("All env vars:", Object.keys(process.env).filter(k => k.includes("RESEND") || k.includes("EMAIL")));
+  
+  // List all environment variables that might be related
+  const envKeys = Object.keys(process.env);
+  console.log("Environment variables containing 'RESEND':", envKeys.filter(k => k.toUpperCase().includes("RESEND")));
+  console.log("Environment variables containing 'EMAIL':", envKeys.filter(k => k.toUpperCase().includes("EMAIL")));
+  
+  // Check for common typos
+  const possibleKeys = ["RESEND_KEY", "RESEND_API_KEY", "RESEND_API", "RESEND"];
+  possibleKeys.forEach(key => {
+    console.log(`${key} exists:`, !!process.env[key]);
+  });
 
   if (!resendKey) {
     console.error("RESEND_KEY not configured - check Vercel environment variables");
