@@ -16,6 +16,12 @@ MY_WHATSAPP_NUMBER=14155551234
 
 # Email address to receive contact form submissions
 CLUB_EMAIL=hello@clubverse.com
+
+# For Resend free tier testing: Use your verified email address
+# Resend free tier only allows sending to verified email addresses
+# Set this to your verified email (e.g., mcmurrich@gmail.com) for testing
+# Leave empty to use CLUB_EMAIL (requires domain verification in Resend)
+RESEND_TO_EMAIL=mcmurrich@gmail.com
 ```
 
 ## Getting WhatsApp Cloud API Credentials

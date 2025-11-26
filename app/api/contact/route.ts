@@ -55,7 +55,9 @@ async function sendEmail(
   phone?: string
 ): Promise<{ success: boolean; error?: string }> {
   const resendKey = process.env.RESEND_KEY;
-  const clubEmail = process.env.CLUB_EMAIL || "hello@clubverse.com";
+  // Use RESEND_TO_EMAIL if set (for testing), otherwise use CLUB_EMAIL
+  // Resend free tier only allows sending to verified email addresses
+  const clubEmail = process.env.RESEND_TO_EMAIL || process.env.CLUB_EMAIL || "hello@clubverse.com";
 
   console.log("=== SEND EMAIL DEBUG ===");
   console.log("RESEND_KEY exists:", !!resendKey);
