@@ -5,32 +5,32 @@ import Image from "next/image";
 const clubTypes = [
   {
     name: "Tennis Clubs",
-    image: "https://images.unsplash.com/photo-1534158914592-062992fbe900?w=800&h=600&fit=crop",
+    image: "/images/clubs/tennis.jpg", // Replace with your image: tennis.jpg
     description: "Court booking, programs, and member management",
   },
   {
     name: "Golf Clubs",
-    image: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&h=600&fit=crop",
+    image: "/images/clubs/golf.jpg", // Replace with your image: golf.jpg
     description: "Tee times, tournaments, and membership tracking",
   },
   {
     name: "Pickleball",
-    image: "https://images.unsplash.com/photo-1622163642991-c9b6c8b9c8f1?w=800&h=600&fit=crop",
+    image: "/images/clubs/pickleball.jpg", // Replace with your image: pickleball.jpg
     description: "Court reservations and league management",
   },
   {
     name: "Padel Clubs",
-    image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=600&fit=crop",
+    image: "/images/clubs/padel.jpg", // Replace with your image: padel.jpg
     description: "Modern court booking and member services",
   },
   {
     name: "Curling Clubs",
-    image: "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=800&h=600&fit=crop",
+    image: "/images/clubs/curling.jpg", // Replace with your image: curling.jpg
     description: "Ice time management and event scheduling",
   },
   {
     name: "Multi-Sport Clubs",
-    image: "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=800&h=600&fit=crop",
+    image: "/images/clubs/multi-sport.jpg", // Replace with your image: multi-sport.jpg
     description: "Complete facility management across all sports",
   },
 ];
