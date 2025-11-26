@@ -59,11 +59,8 @@ export default function ClubTypesGallery() {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-semibold mb-4 text-white">
-            Built for Every Club
+            One platform. Every club. Tennis, golf, pickleball, padel, curling—seamlessly.
           </h2>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-            From tennis to golf, pickleball to curling—ClubVerse works for clubs of all types.
-          </p>
         </div>
 
         {/* Horizontal scrolling container with navigation */}
