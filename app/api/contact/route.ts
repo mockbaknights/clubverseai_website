@@ -57,6 +57,11 @@ async function sendEmail(
   const resendKey = process.env.RESEND_KEY;
   const clubEmail = process.env.CLUB_EMAIL || "hello@clubverse.com";
 
+  console.log("=== SEND EMAIL DEBUG ===");
+  console.log("RESEND_KEY exists:", !!resendKey);
+  console.log("Sending to:", clubEmail);
+  console.log("From email:", process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev");
+
   if (!resendKey) {
     console.error("RESEND_KEY not configured");
     return { success: false, error: "Email service not configured" };
@@ -70,6 +75,7 @@ async function sendEmail(
     // You can change this to your verified domain in Resend
     const fromEmail = process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev";
     
+    console.log("Calling Resend API...");
     const { data, error } = await resend.emails.send({
       from: `ClubVerse Contact <${fromEmail}>`,
       to: [clubEmail],
@@ -100,6 +106,9 @@ Sent from ClubVerse contact form
       `,
     });
 
+    console.log("Resend response - data:", JSON.stringify(data, null, 2));
+    console.log("Resend response - error:", JSON.stringify(error, null, 2));
+
     if (error) {
       console.error("Resend error:", JSON.stringify(error, null, 2));
       // Return more detailed error for debugging
@@ -109,7 +118,15 @@ Sent from ClubVerse contact form
       };
     }
 
-    console.log("Email sent successfully:", data);
+    if (!data || !data.id) {
+      console.error("Resend returned no data or email ID");
+      return {
+        success: false,
+        error: "Email send failed - no confirmation from email service"
+      };
+    }
+
+    console.log("Email sent successfully! Email ID:", data.id);
     return { success: true };
   } catch (error: any) {
     console.error("Email send error:", error);
@@ -124,10 +141,13 @@ Sent from ClubVerse contact form
  * POST handler for contact form submissions
  */
 export async function POST(request: NextRequest) {
+  console.log("=== CONTACT FORM REQUEST ===");
   try {
     // Rate limiting check
     const clientIP = getClientIP(request);
+    console.log("Client IP:", clientIP);
     if (!checkRateLimit(clientIP)) {
+      console.log("Rate limit exceeded for IP:", clientIP);
       return NextResponse.json(
         { error: "Too many requests. Please try again in a minute." },
         { status: 429 }
@@ -137,6 +157,7 @@ export async function POST(request: NextRequest) {
     // Parse request body
     const body = await request.json();
     const { email, message, name, phone, honeypot } = body;
+    console.log("Form data received:", { email, hasMessage: !!message, name, phone, hasHoneypot: !!honeypot });
 
     // Validation
     if (!email || !message) {
