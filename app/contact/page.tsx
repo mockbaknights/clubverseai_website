@@ -200,12 +200,16 @@ export default function ContactPage() {
           </div>
         </form>
 
-        <div className="mt-16 max-w-2xl mx-auto">
+        <div className="mt-16 max-w-2xl mx-auto space-y-6">
           <div className="bg-black/20 border border-gray-900 rounded-3xl p-6 text-center text-sm text-gray-500">
             Prefer email? Reach us at{" "}
-            <a href="mailto:hello@clubverse.com" className="text-orange-500 hover:text-orange-400 font-medium">
-              hello@clubverse.com
+            <a href="mailto:info@gametime.net" className="text-orange-500 hover:text-orange-400 font-medium">
+              info@gametime.net
             </a>
+          </div>
+          
+          <div className="bg-black/20 border border-gray-900 rounded-3xl p-6 text-center text-sm text-gray-500">
+            1176 Yonge St, Toronto, Canada.
           </div>
         </div>
       </div>
