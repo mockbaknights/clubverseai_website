@@ -58,9 +58,12 @@ export default function ClubTypesGallery() {
     <section className="py-24 px-4 border-t border-gray-900">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-semibold mb-4 text-white">
-            One platform. Every club. Tennis, golf, pickleball, padel, curling—seamlessly.
+          <h2 className="text-4xl md:text-5xl font-semibold mb-2 text-white">
+            One platform. Every club.
           </h2>
+          <p className="text-xl md:text-2xl text-gray-400">
+            Tennis, golf, pickleball, padel, curling—seamlessly.
+          </p>
         </div>
 
         {/* Horizontal scrolling container with navigation */}
