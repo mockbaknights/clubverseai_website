@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useRef } from "react";
 
 const clubTypes = [
   {
@@ -36,6 +37,23 @@ const clubTypes = [
 ];
 
 export default function ClubTypesGallery() {
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  const scroll = (direction: "left" | "right") => {
+    if (scrollContainerRef.current) {
+      const scrollAmount = 400; // Scroll by 400px
+      const currentScroll = scrollContainerRef.current.scrollLeft;
+      const newScroll = direction === "left" 
+        ? currentScroll - scrollAmount 
+        : currentScroll + scrollAmount;
+      
+      scrollContainerRef.current.scrollTo({
+        left: newScroll,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
     <section className="py-24 px-4 border-t border-gray-900">
       <div className="max-w-7xl mx-auto">
@@ -48,9 +66,55 @@ export default function ClubTypesGallery() {
           </p>
         </div>
 
-        {/* Horizontal scrolling container */}
+        {/* Horizontal scrolling container with navigation */}
         <div className="relative">
-          <div className="overflow-x-auto scrollbar-hide pb-4">
+          {/* Left arrow button */}
+          <button
+            onClick={() => scroll("left")}
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-black/60 hover:bg-black/80 border border-gray-700 hover:border-gray-600 flex items-center justify-center transition-all duration-200 backdrop-blur-sm"
+            aria-label="Scroll left"
+          >
+            <svg
+              className="w-6 h-6 text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
+          </button>
+
+          {/* Right arrow button */}
+          <button
+            onClick={() => scroll("right")}
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-black/60 hover:bg-black/80 border border-gray-700 hover:border-gray-600 flex items-center justify-center transition-all duration-200 backdrop-blur-sm"
+            aria-label="Scroll right"
+          >
+            <svg
+              className="w-6 h-6 text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </button>
+
+          <div 
+            ref={scrollContainerRef}
+            className="overflow-x-auto scrollbar-hide pb-4"
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+          >
             <div className="flex gap-6 min-w-max px-4">
               {clubTypes.map((club, index) => (
                 <div
@@ -79,16 +143,6 @@ export default function ClubTypesGallery() {
               ))}
             </div>
           </div>
-
-          {/* Scroll hint gradient on the right */}
-          <div className="absolute right-0 top-0 bottom-4 w-20 bg-gradient-to-l from-black to-transparent pointer-events-none" />
-        </div>
-
-        {/* Scroll hint text */}
-        <div className="text-center mt-8">
-          <p className="text-sm text-gray-500">
-            ← Scroll to see more →
-          </p>
         </div>
       </div>
     </section>
