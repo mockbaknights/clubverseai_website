@@ -214,7 +214,7 @@ export async function POST(request: NextRequest) {
     // Success
     return NextResponse.json({
       success: true,
-      message: "Message sent! We'll reply soon.",
+      message: "Message received – the ball's in our court now!",
     });
   } catch (error: any) {
     console.error("Contact form error:", error);
