@@ -16,3 +16,6 @@ Add your club type images here with these exact filenames:
 
 The images will be automatically optimized by Next.js Image component.
 
+
+
+
