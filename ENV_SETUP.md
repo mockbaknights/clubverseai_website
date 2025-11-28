@@ -22,6 +22,22 @@ CLUB_EMAIL=hello@clubverse.com
 # Set this to your verified email (e.g., mcmurrich@gmail.com) for testing
 # Leave empty to use CLUB_EMAIL (requires domain verification in Resend)
 RESEND_TO_EMAIL=mcmurrich@gmail.com
+
+# Groq API Key for Answers page (RAG-powered chat)
+# Get from https://console.groq.com/
+GROQ_API_KEY=gsk_xxxxxxxxxxxxx
+
+# GitHub Token for accessing private repositories (Answers page RAG)
+# Create at https://github.com/settings/tokens
+# Needs 'repo' scope for private repos
+GITHUB_TOKEN=ghp_xxxxxxxxxxxxx
+
+# GitHub organization/username (optional, defaults to "your-org")
+GITHUB_OWNER=your-org
+
+# GitHub repository to index (optional, defaults to clubverse-core-v5)
+# Note: Only the first repo in the list is used
+GITHUB_REPOS=clubverse-core-v5
 ```
 
 ## Getting WhatsApp Cloud API Credentials
@@ -38,4 +54,22 @@ RESEND_TO_EMAIL=mcmurrich@gmail.com
 2. Go to API Keys section
 3. Create a new API key
 4. Add it to your environment variables
+
+## Getting Groq API Key (for Answers Page)
+
+1. Sign up at https://console.groq.com/
+2. Go to API Keys section
+3. Create a new API key
+4. Add it to your environment variables as `GROQ_API_KEY`
+
+## Getting GitHub Token (for Answers Page RAG)
+
+1. Go to https://github.com/settings/tokens
+2. Click "Generate new token" → "Generate new token (classic)"
+3. Give it a name like "Clubverse Answers RAG"
+4. Select the `repo` scope (for private repos)
+5. Generate and copy the token
+6. Add it to your environment variables as `GITHUB_TOKEN`
+
+**Note:** The RAG system will automatically index your codebase on first use. This may take a few minutes depending on repository size. Embeddings are cached in memory and refresh every hour or on deploy.
 
