@@ -34,7 +34,9 @@ export const POST = async (req: Request) => {
       onError: ({ error }) => {
         console.error("=== STREAM ERROR FROM GROQ ===");
         console.error("Error type:", typeof error);
-        console.error("Error message:", error?.message);
+        if (error && typeof error === 'object' && 'message' in error) {
+          console.error("Error message:", (error as any).message);
+        }
         console.error("Error:", JSON.stringify(error, null, 2));
       },
     });
