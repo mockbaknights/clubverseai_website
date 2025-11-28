@@ -28,8 +28,8 @@ RESEND_TO_EMAIL=mcmurrich@gmail.com
 GROQ_API_KEY=gsk_xxxxxxxxxxxxx
 
 # GitHub Token for accessing private repositories (Answers page RAG)
-# Create at https://github.com/settings/tokens
-# Needs 'repo' scope for private repos
+# Create fine-grained token at https://github.com/settings/tokens?type=beta
+# Needs "Contents: Read-only" permission on clubverse-core-v5 repo only
 GITHUB_TOKEN=ghp_xxxxxxxxxxxxx
 
 # GitHub organization/username (optional, defaults to "your-org")
@@ -64,12 +64,46 @@ GITHUB_REPOS=clubverse-core-v5
 
 ## Getting GitHub Token (for Answers Page RAG)
 
-1. Go to https://github.com/settings/tokens
-2. Click "Generate new token" → "Generate new token (classic)"
+1. Go to https://github.com/settings/tokens?type=beta
+2. Click "Generate new token" → "Generate new token (fine-grained)"
 3. Give it a name like "Clubverse Answers RAG"
-4. Select the `repo` scope (for private repos)
-5. Generate and copy the token
-6. Add it to your environment variables as `GITHUB_TOKEN`
+4. Set expiration (recommended: 90 days or custom)
+5. Under "Repository access":
+   - Select "Only select repositories"
+   - Choose `clubverse-core-v5` (or your specific repo)
+6. Under "Repository permissions":
+   - Set "Contents" to **Read-only** (this is all that's needed)
+   - Set "Metadata" to **Read-only** (optional, but recommended)
+7. Generate and copy the token (starts with `ghp_`)
+8. Add it to your environment variables as `GITHUB_TOKEN`
 
-**Note:** The RAG system will automatically index your codebase on first use. This may take a few minutes depending on repository size. Embeddings are cached in memory and refresh every hour or on deploy.
+**Important:** The token only needs "Contents: Read-only" permission on the `clubverse-core-v5` repository. No write permissions are required.
+
+**Note:** The RAG system uses XenovaEmbeddings (local, free) - no HuggingFace API key needed. It will automatically index your codebase on first use. This may take a few minutes depending on repository size. Embeddings are cached in memory and refresh every hour or on deploy.
+
+## Vercel Environment Variables Checklist
+
+For production deployment on Vercel, ensure these environment variables are set:
+
+### Required Variables
+
+1. **GROQ_API_KEY**
+   - Get from https://console.groq.com/
+   - Starts with `gsk_`
+   - Set for: Production, Preview, and Development
+
+2. **GITHUB_TOKEN**
+   - Fine-grained token with "Contents: Read-only" on `clubverse-core-v5`
+   - Starts with `ghp_`
+   - Set for: Production, Preview, and Development
+   - **Note:** If you see `Github_token` (lowercase) in Vercel, rename it to `GITHUB_TOKEN` (uppercase) to match the code
+
+### Optional Variables
+
+- **GITHUB_OWNER** - Your GitHub org/username (defaults to "your-org")
+- **GITHUB_REPOS** - Repository name (defaults to "clubverse-core-v5")
+
+### Not Required
+
+- **HUGGINGFACEHUB_API_KEY** - Not needed (using local XenovaEmbeddings)
 
